@@ -1,43 +1,49 @@
-// ========== SÉLECTION DES ÉLÉMENTS DU DOM ==========
-
-// Le conteneur principal du popup (login + register)
+// ========== SÉLECTION DES ÉLÉMENTS ==========
 const wrapper = document.querySelector('.wrapper');
-
-// Lien "Login" dans le formulaire Register (pour revenir au login)
 const loginLink = document.querySelector('.login-link');
-
-// Lien "Register" dans le formulaire Login (pour aller à l'inscription)
 const registerLink = document.querySelector('.register-link');
-
-// Bouton "Login" dans la barre de navigation (ouvre le popup)
 const btnPopup = document.querySelector('.btnLogin-popup');
-
-// Bouton X pour fermer le popup
 const iconClose = document.querySelector('.icon-close');
+const hamburger = document.getElementById('hamburger');
+const navigation = document.getElementById('navigation');
 
+// ========== POPUP LOGIN/REGISTER ==========
 
-// ========== ÉVÉNEMENTS ==========
-
-// Clic sur "Register" → affiche le formulaire d'inscription
-// La classe "active" déclenche l'animation CSS vers le formulaire Register
-registerLink.addEventListener('click', ()=>{
+// Aller vers le formulaire Register
+registerLink.addEventListener('click', () => {
     wrapper.classList.add('active');
 });
 
-// Clic sur "Login" → revient au formulaire de connexion
-// Retire la classe "active" pour revenir au formulaire Login
-loginLink.addEventListener('click', ()=>{
+// Revenir au formulaire Login
+loginLink.addEventListener('click', () => {
     wrapper.classList.remove('active');
 });
 
-// Clic sur le bouton "Login" dans la nav → ouvre le popup
-// La classe "active-popup" fait apparaître le popup (scale 0 → scale 1)
-btnPopup.addEventListener('click', ()=>{
+// Ouvrir le popup
+btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
+    // Fermer le menu mobile si ouvert
+    navigation.classList.remove('nav-open');
+    hamburger.classList.remove('open');
 });
 
-// Clic sur le bouton X → ferme le popup
-// Retire la classe "active-popup" pour faire disparaître le popup
-iconClose.addEventListener('click', ()=>{
+// Fermer le popup
+iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
+});
+
+// ========== MENU HAMBURGER (MOBILE) ==========
+
+// Ouvrir/fermer le menu au clic sur le hamburger
+hamburger.addEventListener('click', () => {
+    navigation.classList.toggle('nav-open');
+    hamburger.classList.toggle('open');
+});
+
+// Fermer le menu si on clique en dehors
+document.addEventListener('click', (e) => {
+    if (!navigation.contains(e.target) && !hamburger.contains(e.target)) {
+        navigation.classList.remove('nav-open');
+        hamburger.classList.remove('open');
+    }
 });
