@@ -1,43 +1,49 @@
+/* Import de la police Google Fonts : Poppins avec tous les graisses */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* Reset global : supprime les marges/paddings par défaut de tous les éléments */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Les bordures et padding sont inclus dans la taille totale */
   font-family: "Poppins", sans-serif;
 }
 
+/* ========== BODY ========== */
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  min-height: 100vh; /* Occupe toute la hauteur de l'écran */
   background: url("background.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-size: cover; /* L'image couvre tout l'écran */
+  background-position: center; /* L'image est centrée */
 }
 
+/* ========== HEADER ========== */
 header {
-  position: fixed;
+  position: fixed; /* Reste en haut même en scrollant */
   top: 0;
   left: 0;
   width: 100%;
   padding: 20px 100px;
-  /*background: red;*/
+  /*background: red;*/ /* Ligne désactivée, utile pour déboguer */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Logo à gauche, nav à droite */
   align-items: center;
-  z-index: 99;
+  z-index: 99; /* Reste au-dessus de tous les autres éléments */
 }
 
+/* ========== LOGO ========== */
 .logo {
   font-size: 2em;
   color: #fff;
-  -webkit-user-select: none; /* Safari et Iphone sans ça problème de compatibilité */
-  -ms-user-select: none; /* Ancien Edge */
-  user-select: none; /* Standard */
+  -webkit-user-select: none; /* Empêche la sélection du texte sur Safari/iPhone */
+  -ms-user-select: none; /* Empêche la sélection du texte sur ancien Edge */
+  user-select: none; /* Empêche la sélection du texte (standard) */
 }
 
+/* ========== NAVIGATION ========== */
 .navigation a {
   position: relative;
   font-size: 1.1em;
@@ -47,6 +53,7 @@ header {
   margin-left: 40px;
 }
 
+/* Ligne de soulignement animée sous les liens de navigation */
 .navigation a::after {
   content: "";
   position: absolute;
@@ -57,15 +64,17 @@ header {
   background: #fff;
   border-radius: 5px;
   transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.5s;
+  transform: scaleX(0); /* Invisible par défaut */
+  transition: transform 0.5s; /* Animation fluide */
 }
 
+/* Au survol, la ligne apparaît de gauche à droite */
 .navigation a:hover::after {
   transform-origin: left;
-  transform: scaleX(1);
+  transform: scaleX(1); /* Visible au survol */
 }
 
+/* ========== BOUTON LOGIN DANS LA NAV ========== */
 .navigation .btnLogin-popup {
   width: 130px;
   height: 50px;
@@ -80,11 +89,13 @@ header {
   color: #fff;
 }
 
+/* Au survol : fond blanc, texte foncé */
 .navigation .btnLogin-popup:hover {
   background: #fff;
   color: #162938;
 }
 
+/* ========== POPUP WRAPPER ========== */
 .wrapper {
   position: relative;
   width: 400px;
@@ -92,54 +103,63 @@ header {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); /* Flou derrière le popup (Safari) */
+  backdrop-filter: blur(20px); /* Flou derrière le popup (standard) */
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  transform: scale(0);
+  transform: scale(0); /* Invisible par défaut (taille 0) */
   transition:
     transform 0.5s ease,
-    height 0.2s ease;
+    /* Animation d'ouverture */ height 0.2s ease; /* Animation de changement de hauteur */
 }
 
+/* Quand le popup est ouvert (classe ajoutée par JS) */
 .wrapper.active-popup {
-  transform: scale(1);
+  transform: scale(1); /* Affiche le popup en taille normale */
 }
 
+/* Quand le formulaire Register est affiché (plus grand) */
 .wrapper.active {
   height: 520px;
 }
 
+/* Formulaires à l'intérieur du popup */
 .wrapper .form-box {
   width: 100%;
   padding: 40px;
 }
 
+/* ========== ANIMATION ENTRE LOGIN ET REGISTER ========== */
+
+/* Login visible par défaut, à gauche */
 .wrapper .form-box.login {
-  /* display: none; */
   transition: transform 0.18s ease;
   transform: translateX(0);
 }
 
+/* Login sort à gauche quand Register est actif */
 .wrapper.active .form-box.login {
   transition: none;
   transform: translateX(-400px);
 }
 
+/* Register caché à droite par défaut */
 .wrapper .form-box.register {
   position: absolute;
   transition: none;
   transform: translateX(400px);
 }
 
+/* Register entre depuis la droite quand actif */
 .wrapper.active .form-box.register {
   transition: transform 0.18s ease;
   transform: translateX(0);
 }
 
+/* ========== BOUTON FERMER (X) ========== */
 .wrapper .icon-close {
   position: absolute;
   top: 0;
@@ -154,23 +174,26 @@ header {
   align-items: center;
   border-bottom-left-radius: 20px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 1; /* Reste au-dessus des formulaires */
 }
 
+/* ========== TITRES DES FORMULAIRES ========== */
 .form-box h2 {
   font-size: 2em;
   color: #162938;
   text-align: center;
 }
 
+/* ========== CHAMPS DE SAISIE ========== */
 .input-box {
   position: relative;
   width: 100%;
   height: 50px;
-  border-bottom: 2px solid #162938;
+  border-bottom: 2px solid #162938; /* Ligne sous chaque champ */
   margin: 30px 0;
 }
 
+/* Label flottant : centré par défaut */
 .input-box label {
   position: absolute;
   top: 50%;
@@ -179,15 +202,17 @@ header {
   font-size: 1em;
   color: #162938;
   font-weight: 500;
-  pointer-events: none;
-  transition: 0.5s;
+  pointer-events: none; /* Le label ne bloque pas les clics */
+  transition: 0.5s; /* Animation de déplacement */
 }
 
+/* Label remonte quand le champ est actif ou rempli */
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
   top: -5px;
 }
 
+/* Style de l'input */
 .input-box input {
   width: 100%;
   height: 100%;
@@ -197,28 +222,30 @@ header {
   font-size: 1em;
   color: #162938;
   font-weight: 600;
-  padding: 0 35px 0 5px;
+  padding: 0 35px 0 5px; /* Espace à droite pour l'icône */
 }
 
+/* Icône à droite de chaque champ */
 .input-box .icon {
   position: absolute;
   right: 8px;
   font-size: 1.2em;
   color: #162938;
-  line-height: 57px;
+  line-height: 57px; /* Centre verticalement l'icône */
 }
 
+/* ========== REMEMBER ME / FORGOT PASSWORD ========== */
 .remenber-forgot {
   font-size: 0.9em;
   color: #162938;
   font-weight: 500;
   margin: -15px 0 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Case à gauche, lien à droite */
 }
 
 .remenber-forgot label input {
-  accent-color: #162938;
+  accent-color: #162938; /* Couleur de la case à cocher */
   margin-right: 3px;
 }
 
@@ -231,6 +258,7 @@ header {
   text-decoration: underline;
 }
 
+/* ========== BOUTON SUBMIT ========== */
 .btn {
   width: 100%;
   height: 45px;
@@ -244,6 +272,7 @@ header {
   font-weight: 500;
 }
 
+/* ========== LIEN LOGIN/REGISTER EN BAS DU FORMULAIRE ========== */
 .login-register {
   font-size: 0.9em;
   color: #162938;

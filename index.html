@@ -2,13 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Compatibilité avec Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Responsive : adapte la page à la taille de l'écran -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web site With Login& Registration | Codehal</title>
+    <!-- Lien vers la feuille de style CSS -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Favicon : icône dans l'onglet du navigateur -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
 
   <body>
+    <!-- ========== HEADER : barre de navigation en haut ========== -->
     <header>
       <h2 class="logo">Logo</h2>
       <nav class="navigation">
@@ -16,30 +22,44 @@
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
+        <!-- Bouton qui ouvre le popup Login -->
         <button class="btnLogin-popup">Login</button>
       </nav>
     </header>
 
+    <!-- ========== POPUP : contient les formulaires Login et Register ========== -->
     <div class="wrapper">
+      <!-- Bouton X pour fermer le popup -->
       <span class="icon-close"> <ion-icon name="close"></ion-icon> </span>
+
+      <!-- ===== FORMULAIRE LOGIN ===== -->
       <div class="form-box login">
         <h2>Login</h2>
         <form action="#">
+          <!-- Champ Email -->
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required placeholder="" />
-            <label> Email</label>
+            <input type="email" required placeholder=" " />
+            <label>Email</label>
           </div>
+
+          <!-- Champ Mot de passe -->
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required placeholder="" />
+            <input type="password" required placeholder=" " />
             <label>Password</label>
           </div>
+
+          <!-- Case à cocher "Se souvenir de moi" + lien mot de passe oublié -->
           <div class="remenber-forgot">
             <label> <input type="checkbox" />Remember me </label>
             <a href="#">Forgot Password?</a>
           </div>
+
+          <!-- Bouton de connexion -->
           <button type="submit" class="btn">Login</button>
+
+          <!-- Lien vers le formulaire Register -->
           <div class="login-register">
             <p>
               Don't have an account?
@@ -49,31 +69,43 @@
         </form>
       </div>
 
+      <!-- ===== FORMULAIRE REGISTER ===== -->
       <div class="form-box register">
         <h2>Registration</h2>
         <form action="#">
+          <!-- Champ Nom d'utilisateur -->
           <div class="input-box">
             <span class="icon"><ion-icon name="person"></ion-icon></span>
-            <input type="text" required placeholder="" />
+            <input type="text" required placeholder=" " />
             <label>Username</label>
           </div>
+
+          <!-- Champ Email -->
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required placeholder="" />
+            <input type="email" required placeholder=" " />
             <label>Email</label>
           </div>
+
+          <!-- Champ Mot de passe -->
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required placeholder="" />
+            <input type="password" required placeholder=" " />
             <label>Password</label>
           </div>
+
+          <!-- Case à cocher conditions + lien mot de passe oublié -->
           <div class="remenber-forgot">
             <label>
               <input type="checkbox" />I agree to the terms & conditions
             </label>
             <a href="#">Forgot Password?</a>
           </div>
+
+          <!-- Bouton d'inscription -->
           <button type="submit" class="btn">Register</button>
+
+          <!-- Lien vers le formulaire Login -->
           <div class="login-register">
             <p>
               Already have an account?
@@ -83,12 +115,16 @@
         </form>
       </div>
     </div>
+    <!-- ========== FIN DU POPUP ========== -->
 
+    <!-- Script principal -->
     <script src="script.js"></script>
+    <!-- Bibliothèque d'icônes Ionicons (version moderne) -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
     ></script>
+    <!-- Bibliothèque d'icônes Ionicons (anciens navigateurs sans support ES modules) -->
     <script
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
